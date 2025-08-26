@@ -409,10 +409,10 @@ var ParticlePool = (function() {
 function calculateDays() {
     // Text lines for the counter display
     const lines = [
-        "小怡宝宝，这是我们认识的第", // Line 1 text
+        "小露宝宝，这是我们认识的第", // Line 1 text
         "", // Line 2 (placeholder for time)
         "永远爱你，一辈子，不分离！", // Line 3 text
-        "最爱你啦！小怡宝宝" // Line 4 text
+        "最爱你啦！小露宝宝" // Line 4 text
     ];
 
     // Get DOM elements for each line
@@ -459,7 +459,7 @@ function calculateDays() {
 
     // Function to update the time counter continuously
     function startTimeUpdate(timeLineElement) {
-        const startDate = new Date('2024-12-08T13:16:22+08:00'); // The target start date/time (CST)
+        const startDate = new Date('2025-08-26T15:49:39+08:00'); // The target start date/time (CST)
 
         function updateTime() {
             // Get current date/time in Shanghai timezone

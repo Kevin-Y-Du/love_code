@@ -15,12 +15,15 @@
             margin: 0;
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
-            position: relative; /* 为背景视频和动画定位 */
-            cursor: none; /* 隐藏鼠标指针 */
-            overflow-y: auto; /* 明确允许垂直滚动 */
+            position: relative;
+            cursor: none;
+            overflow-y: auto;
+            user-select: none; /* Disable text selection */
+            -webkit-user-select: none; /* For Safari */
+            -moz-user-select: none; /* For Firefox */
+            -ms-user-select: none; /* For IE/Edge */
         }
         
-        /* 全屏背景视频样式 */
         #bgVideo {
             position: fixed;
             top: 0;
@@ -29,7 +32,7 @@
             min-height: 100%;
             width: auto;
             height: auto;
-            z-index: -1; /* 确保在所有内容之下 */
+            z-index: -1;
             opacity: 0.8;
             object-fit: cover;
         }
@@ -38,14 +41,14 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            max-width: 700px;
+            max-width: 1000px;
             width: 100%;
             padding: 20px 10px;
             box-sizing: border-box;
             z-index: 10;
             position: relative;
             margin: 20px auto;
-            min-height: 120vh; /* 增加内容高度以确保可滚动 */
+            min-height: 120vh;
         }
         
         button {
@@ -58,10 +61,10 @@
             background-color: #007bff;
             color: white;
             transition: background-color 0.3s;
-            flex: 1 0 45%;
-            max-width: 300px;
+            flex: 0 0 calc(33.33% - 16px);
             text-align: center;
             box-sizing: border-box;
+            user-select: none; /* Disable text selection for buttons */
         }
         
         button:hover {
@@ -76,37 +79,35 @@
             background-color: #218838;
         }
         
-        /* 响应式设计 */
         @media (max-width: 768px) {
             .button-container {
                 max-width: 100%;
                 padding: 10px;
             }
             button {
-                flex: 1 0 45%;
-                max-width: 45%;
-                padding: 10px 15px;
-                font-size: 14px;
+                flex: 0 0 calc(33.33% - 12px);
+                padding: 8px 10px;
+                font-size: 12px;
+                margin: 6px;
             }
         }
         
         @media (min-width: 769px) {
             button {
-                flex: 1 0 45%;
-                max-width: 300px;
+                flex: 0 0 calc(33.33% - 16px);
                 padding: 12px 20px;
                 font-size: 16px;
+                margin: 8px;
             }
         }
 
-        /* 爱心动画的样式 */
         #heartsContainer {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none; /* 防止动画干扰滚动 */
+            pointer-events: none;
             z-index: 5;
         }
 
@@ -129,14 +130,36 @@
             }
         }
 
-        /* 下雨动画的样式 */
+        .click-heart {
+            position: absolute;
+            color: red;
+            font-size: 20px;
+            pointer-events: none;
+            animation: clickHeartAnim 1s ease-out forwards;
+        }
+
+        @keyframes clickHeartAnim {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+        }
+
         #rainContainer {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none; /* 防止动画干扰滚动 */
+            pointer-events: none;
             z-index: 2;
         }
 
@@ -153,7 +176,6 @@
             100% { transform: translateY(100vh); opacity: 0; }
         }
 
-        /* 音乐播放按钮的样式 */
         #playButton {
             position: fixed;
             bottom: 20px;
@@ -187,29 +209,52 @@
 
     <div class="button-container">
         <button onclick="window.open('https://5211314.org/baby', '_blank')">你愿意成为我的宝宝吗？</button>
-        <button class="backup" onclick="window.open('https://kevin-x-du.github.io/love_code/baby', '_blank')">备用链接</button>
+        <button class="backup" onclick="window.open('https://kevin-x-du.github.io/love_code/baby', '_blank')">备用链接1</button>
+        <button class="backup" onclick="window.open('https://5211314.pages.dev/baby', '_blank')">备用链接2</button>
+        
         <button onclick="window.open('https://5211314.org/bro', '_blank')">你愿意成为我的兄弟吗？</button>
-        <button class="backup" onclick="window.open('https://kevin-x-du.github.io/love_code/bro', '_blank')">备用链接</button>
+        <button class="backup" onclick="window.open('https://kevin-x-du.github.io/love_code/bro', '_blank')">备用链接1</button>
+        <button class="backup" onclick="window.open('https://5211314.pages.dev/bro', '_blank')">备用链接2</button>
+        
         <button onclick="window.open('https://5211314.org/dog', '_blank')">你愿意成为我的小狗吗？</button>
-        <button class="backup" onclick="window.open('https://kevin-x-du.github.io/love_code/dog', '_blank')">备用链接</button>
+        <button class="backup" onclick="window.open('https://kevin-x-du.github.io/love_code/dog', '_blank')">备用链接1</button>
+        <button class="backup" onclick="window.open('https://5211314.pages.dev/dog', '_blank')">备用链接2</button>
+        
         <button onclick="window.open('https://5211314.org/friends', '_blank')">可以和我做好朋友吗？</button>
-        <button class="backup" onclick="window.open('https://kevin-x-du.github.io/love_code/friends', '_blank')">备用链接</button>
+        <button class="backup" onclick="window.open('https://kevin-x-du.github.io/love_code/friends', '_blank')">备用链接1</button>
+        <button class="backup" onclick="window.open('https://5211314.pages.dev/friends', '_blank')">备用链接2</button>
+        
         <button onclick="window.open('https://5211314.org/kfc', '_blank')">可以V我50吃KFC吗？</button>
-        <button class="backup" onclick="window.open('https://kevin-x-du.github.io/love_code/kfc', '_blank')">备用链接</button>
+        <button class="backup" onclick="window.open('https://kevin-x-du.github.io/love_code/kfc', '_blank')">备用链接1</button>
+        <button class="backup" onclick="window.open('https://5211314.pages.dev/kfc', '_blank')">备用链接2</button>
+        
         <button onclick="window.open('https://5211314.org/love', '_blank')">你愿意成为我的恋人吗？</button>
-        <button class="backup" onclick="window.open('https://kevin-x-du.github.io/love_code/love', '_blank')">备用链接</button>
+        <button class="backup" onclick="window.open('https://kevin-x-du.github.io/love_code/love', '_blank')">备用链接1</button>
+        <button class="backup" onclick="window.open('https://5211314.pages.dev/love', '_blank')">备用链接2</button>
+        
         <button onclick="window.open('https://5211314.org/master', '_blank')">你愿意成为我的主人吗？</button>
-        <button class="backup" onclick="window.open('https://kevin-x-du.github.io/love_code/master', '_blank')">备用链接</button>
+        <button class="backup" onclick="window.open('https://kevin-x-du.github.io/love_code/master', '_blank')">备用链接1</button>
+        <button class="backup" onclick="window.open('https://5211314.pages.dev/master', '_blank')">备用链接2</button>
+        
         <button onclick="window.open('https://5211314.org/mom', '_blank')">可以成为我的妈妈吗？</button>
-        <button class="backup" onclick="window.open('https://kevin-x-du.github.io/love_code/mom', '_blank')">备用链接</button>
+        <button class="backup" onclick="window.open('https://kevin-x-du.github.io/love_code/mom', '_blank')">备用链接1</button>
+        <button class="backup" onclick="window.open('https://5211314.pages.dev/mom', '_blank')">备用链接2</button>
+        
         <button onclick="window.open('https://5211314.org/son', '_blank')">你愿意成为我的儿子吗？</button>
-        <button class="backup" onclick="window.open('https://kevin-x-du.github.io/love_code/son', '_blank')">备用链接</button>
+        <button class="backup" onclick="window.open('https://kevin-x-du.github.io/love_code/son', '_blank')">备用链接1</button>
+        <button class="backup" onclick="window.open('https://5211314.pages.dev/son', '_blank')">备用链接2</button>
+        
         <button onclick="window.open('https://5211314.org/tea', '_blank')">可以请我喝奶茶吗？</button>
-        <button class="backup" onclick="window.open('https://kevin-x-du.github.io/love_code/tea', '_blank')">备用链接</button>
+        <button class="backup" onclick="window.open('https://kevin-x-du.github.io/love_code/tea', '_blank')">备用链接1</button>
+        <button class="backup" onclick="window.open('https://5211314.pages.dev/tea', '_blank')">备用链接2</button>
+        
         <button onclick="window.open('https://5211314.org/普通版', '_blank')">ZYL I love you(普通版)</button>
-        <button class="backup" onclick="window.open('https://kevin-x-du.github.io/love_code/普通版', '_blank')">备用链接</button>
+        <button class="backup" onclick="window.open('https://kevin-x-du.github.io/love_code/普通版', '_blank')">备用链接1</button>
+        <button class="backup" onclick="window.open('https://5211314.pages.dev/普通版', '_blank')">备用链接2</button>
+        
         <button onclick="window.open('https://5211314.org/ZYL', '_blank')">ZYL I love you</button>
-        <button class="backup" onclick="window.open('https://kevin-x-du.github.io/love_code/ZYL', '_blank')">备用链接</button>
+        <button class="backup" onclick="window.open('https://kevin-x-du.github.io/love_code/ZYL', '_blank')">备用链接1</button>
+        <button class="backup" onclick="window.open('https://5211314.pages.dev/ZYL', '_blank')">备用链接2</button>
     </div>
 
     <audio id="bgMusic" src="第57次取消发送.mp3" loop></audio>
@@ -218,7 +263,6 @@
     </button>
 
     <script>
-        // --- 禁用右键和F12 (DevTools) 的代码 ---
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
         });
@@ -238,7 +282,6 @@
             }
         });
 
-        // 爱心粒子动画
         const heartsContainer = document.getElementById('heartsContainer');
         const createHearts = () => {
             for (let i = 0; i < 30; i++) {
@@ -264,7 +307,6 @@
         window.addEventListener('load', createHearts);
         setInterval(createHearts, 10000);
 
-        // 下雨特效
         const rainContainer = document.getElementById('rainContainer');
         
         function createRaindrop() {
@@ -287,7 +329,6 @@
         
         window.addEventListener('load', startRain);
 
-        // 音乐播放控制逻辑
         const playButton = document.getElementById('playButton');
         const bgMusic = document.getElementById('bgMusic');
         const playIcon = playButton.querySelector('i');
@@ -317,7 +358,19 @@
             }
         });
 
-        // --- Fairy Dust Cursor Script ---
+        // Add click heart effect
+        document.addEventListener('click', function(e) {
+            const heart = document.createElement('div');
+            heart.className = 'click-heart';
+            heart.innerHTML = '<i class="fas fa-heart"></i>';
+            heart.style.left = `${e.clientX}px`;
+            heart.style.top = `${e.clientY}px`;
+            document.body.appendChild(heart);
+            setTimeout(() => {
+                heart.remove();
+            }, 1000);
+        });
+
         (function fairyDustCursor() {
             var possibleColors = ["#D61C59", "#E7D84B", "#1B8798"];
             var width = window.innerWidth;
@@ -332,7 +385,7 @@
 
             function bindEvents() {
                 document.addEventListener('mousemove', onMouseMove);
-                document.addEventListener('touchmove', onTouchMove, { passive: true }); // 设置为被动事件
+                document.addEventListener('touchmove', onTouchMove, { passive: true });
                 document.addEventListener('touchstart', onTouchMove, { passive: true });
                 window.addEventListener('resize', onWindowResize);
             }

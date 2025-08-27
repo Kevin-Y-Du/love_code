@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>all集合</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            position: relative; /* 为背景视频和动画定位 */
+            cursor: none; /* 隐藏鼠标指针 */
+            overflow-y: auto; /* 明确允许垂直滚动 */
+        }
+        
+        /* 全屏背景视频样式 */
+        #bgVideo {
+            position: fixed;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1; /* 确保在所有内容之下 */
+            opacity: 0.8;
+            object-fit: cover;
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 700px;
+            width: 100%;
+            padding: 20px 10px;
+            box-sizing: border-box;
+            z-index: 10;
+            position: relative;
+            margin: 20px auto;
+            min-height: 120vh; /* 增加内容高度以确保可滚动 */
+        }
+        
+        button {
+            margin: 8px;
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            transition: background-color 0.3s;
+            flex: 1 0 45%;
+            max-width: 300px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        button.backup {
+            background-color: #28a745;
+        }
+        
+        button.backup:hover {
+            background-color: #218838;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .button-container {
+                max-width: 100%;
+                padding: 10px;
+            }
+            button {
+                flex: 1 0 45%;
+                max-width: 45%;
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            button {
+                flex: 1 0 45%;
+                max-width: 300px;
+                padding: 12px 20px;
+                font-size: 16px;
+            }
+        }
+
+        /* 爱心动画的样式 */
+        #heartsContainer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* 防止动画干扰滚动 */
+            z-index: 5;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -10px;
+            transform: rotate(0deg);
+            color: red;
+            animation: flyUp linear infinite;
+        }
+
+        @keyframes flyUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* 下雨动画的样式 */
+        #rainContainer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* 防止动画干扰滚动 */
+            z-index: 2;
+        }
+
+        .raindrop {
+            position: absolute;
+            width: 1.5px;
+            height: 15px;
+            background-color: rgba(174, 194, 224, 0.6);
+            border-radius: 0 0 3px 3px;
+        }
+
+        @keyframes rain-fall {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+
+        /* 音乐播放按钮的样式 */
+        #playButton {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s;
+        }
+
+        #playButton:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <video autoplay muted loop id="bgVideo" src="樱花.mp4"></video>
+
+    <div id="heartsContainer"></div>
+    
+    <div id="rainContainer"></div>
+
+    <div class="button-container">
+        <button onclick="window.open('https://5211314.org/baby', '_blank')">你愿意成为我的宝宝吗？</button>
+        <button class="backup" onclick="window.open('https://kevin-x-du.github.io/love_code/baby', '_blank')">备用链接</button>
+        <button onclick="window.open('https://5211314.org/bro', '_blank')">你愿意成为我的兄弟吗？</button>
+        <button class="backup" onclick="window.open('https://kevin-x-du.github.io/love_code/bro', '_blank')">备用链接</button>
+        <button onclick="window.open('https://5211314.org/dog', '_blank')">你愿意成为我的小狗吗？</button>
+        <button class="backup" onclick="window.open('https://kevin-x-du.github.io/love_code/dog', '_blank')">备用链接</button>
+        <button onclick="window.open('https://5211314.org/friends', '_blank')">可以和我做好朋友吗？</button>
+        <button class="backup" onclick="window.open('https://kevin-x-du.github.io/love_code/friends', '_blank')">备用链接</button>
+        <button onclick="window.open('https://5211314.org/kfc', '_blank')">可以V我50吃KFC吗？</button>
+        <button class="backup" onclick="window.open('https://kevin-x-du.github.io/love_code/kfc', '_blank')">备用链接</button>
+        <button onclick="window.open('https://5211314.org/love', '_blank')">你愿意成为我的恋人吗？</button>
+        <button class="backup" onclick="window.open('https://kevin-x-du.github.io/love_code/love', '_blank')">备用链接</button>
+        <button onclick="window.open('https://5211314.org/master', '_blank')">你愿意成为我的主人吗？</button>
+        <button class="backup" onclick="window.open('https://kevin-x-du.github.io/love_code/master', '_blank')">备用链接</button>
+        <button onclick="window.open('https://5211314.org/mon', '_blank')">可以成为我的妈妈吗？</button>
+        <button class="backup" onclick="window.open('https://kevin-x-du.github.io/love_code/mon', '_blank')">备用链接</button>
+        <button onclick="window.open('https://5211314.org/son', '_blank')">你愿意成为我的儿子吗？</button>
+        <button class="backup" onclick="window.open('https://kevin-x-du.github.io/love_code/son', '_blank')">备用链接</button>
+        <button onclick="window.open('https://5211314.org/tea', '_blank')">可以请我喝奶茶吗？</button>
+        <button class="backup" onclick="window.open('https://kevin-x-du.github.io/love_code/tea', '_blank')">备用链接</button>
+        <button onclick="window.open('https://5211314.org/普通版', '_blank')">ZYL I love you(普通版)</button>
+        <button class="backup" onclick="window.open('https://kevin-x-du.github.io/love_code/普通版', '_blank')">备用链接</button>
+        <button onclick="window.open('https://5211314.org/ZYL', '_blank')">ZYL I love you</button>
+        <button class="backup" onclick="window.open('https://kevin-x-du.github.io/love_code/ZYL', '_blank')">备用链接</button>
+    </div>
+
+    <audio id="bgMusic" src="第57次取消发送.mp3" loop></audio>
+    <button id="playButton">
+        <i class="fas fa-play"></i>
+    </button>
+
+    <script>
+        // --- 禁用右键和F12 (DevTools) 的代码 ---
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12' || e.keyCode === 123) {
+                e.preventDefault();
+            }
+            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.keyCode === 73)) {
+                e.preventDefault();
+            }
+            if (e.ctrlKey && e.shiftKey && (e.key === 'J' || e.keyCode === 74)) {
+                e.preventDefault();
+            }
+            if (e.ctrlKey && (e.key === 'U' || e.keyCode === 85)) {
+                e.preventDefault();
+            }
+        });
+
+        // 爱心粒子动画
+        const heartsContainer = document.getElementById('heartsContainer');
+        const createHearts = () => {
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart';
+                    heart.innerHTML = '<i class="fas fa-heart"></i>';
+                    
+                    const size = Math.random() * 20 + 10;
+                    heart.style.fontSize = `${size}px`;
+                    heart.style.left = `${Math.random() * 100}%`;
+                    heart.style.animationDelay = `${Math.random() * 5}s`;
+                    heart.style.animationDuration = `${Math.random() * 8 + 4}s`;
+                    
+                    heartsContainer.appendChild(heart);
+                    
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 10000);
+                }, i * 300);
+            }
+        };
+        window.addEventListener('load', createHearts);
+        setInterval(createHearts, 10000);
+
+        // 下雨特效
+        const rainContainer = document.getElementById('rainContainer');
+        
+        function createRaindrop() {
+            const raindrop = document.createElement('div');
+            raindrop.className = 'raindrop';
+            raindrop.style.left = `${Math.random() * 100}%`;
+            raindrop.style.top = `${-20}px`;
+
+            const duration = Math.random() * 1 + 0.5;
+            const delay = Math.random() * 2;
+            raindrop.style.animation = `rain-fall ${duration}s linear infinite`;
+            raindrop.style.animationDelay = `${delay}s`;
+
+            rainContainer.appendChild(raindrop);
+        }
+
+        function startRain() {
+            setInterval(createRaindrop, 50);
+        }
+        
+        window.addEventListener('load', startRain);
+
+        // 音乐播放控制逻辑
+        const playButton = document.getElementById('playButton');
+        const bgMusic = document.getElementById('bgMusic');
+        const playIcon = playButton.querySelector('i');
+        let isPlaying = false;
+        let firstAttempt = true;
+
+        playButton.addEventListener('click', function() {
+            if (isPlaying) {
+                bgMusic.pause();
+                playIcon.classList.remove('fa-pause');
+                playIcon.classList.add('fa-play');
+            } else {
+                const playPromise = bgMusic.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        isPlaying = true;
+                        playIcon.classList.remove('fa-play');
+                        playIcon.classList.add('fa-pause');
+                    }).catch(error => {
+                        console.error("音乐播放失败:", error);
+                        if (firstAttempt) {
+                            alert("由于浏览器限制，音乐未能自动播放。请再次点击播放按钮。");
+                            firstAttempt = false;
+                        }
+                    });
+                }
+            }
+        });
+
+        // --- Fairy Dust Cursor Script ---
+        (function fairyDustCursor() {
+            var possibleColors = ["#D61C59", "#E7D84B", "#1B8798"];
+            var width = window.innerWidth;
+            var height = window.innerHeight;
+            var cursor = {x: width/2, y: width/2};
+            var particles = [];
+
+            function init() {
+                bindEvents();
+                loop();
+            }
+
+            function bindEvents() {
+                document.addEventListener('mousemove', onMouseMove);
+                document.addEventListener('touchmove', onTouchMove, { passive: true }); // 设置为被动事件
+                document.addEventListener('touchstart', onTouchMove, { passive: true });
+                window.addEventListener('resize', onWindowResize);
+            }
+
+            function onWindowResize(e) {
+                width = window.innerWidth;
+                height = window.innerHeight;
+            }
+
+            function onTouchMove(e) {
+                if (e.touches.length > 0) {
+                    for (var i = 0; i < e.touches.length; i++) {
+                        addParticle(e.touches[i].clientX, e.touches[i].clientY, possibleColors[Math.floor(Math.random()*possibleColors.length)]);
+                    }
+                }
+            }
+
+            function onMouseMove(e) {
+                cursor.x = e.clientX;
+                cursor.y = e.clientY;
+                addParticle(cursor.x, cursor.y, possibleColors[Math.floor(Math.random()*possibleColors.length)]);
+            }
+
+            function addParticle(x, y, color) {
+                var particle = new Particle();
+                particle.init(x, y, color);
+                particles.push(particle);
+            }
+
+            function updateParticles() {
+                for (var i = 0; i < particles.length; i++) {
+                    particles[i].update();
+                }
+                for (var i = particles.length - 1; i >= 0; i--) {
+                    if (particles[i].lifeSpan < 0) {
+                        particles[i].die();
+                        particles.splice(i, 1);
+                    }
+                }
+            }
+
+            function loop() {
+                requestAnimationFrame(loop);
+                updateParticles();
+            }
+
+            function Particle() {
+                this.character = "✨";
+                this.lifeSpan = 120;
+                this.initialStyles = {
+                    "position": "fixed",
+                    "top": "0",
+                    "left": "0",
+                    "display": "block",
+                    "pointerEvents": "none",
+                    "z-index": "10000000",
+                    "fontSize": "20px",
+                    "will-change": "transform",
+                    "opacity": "0.8"
+                };
+
+                this.init = function(x, y, color) {
+                    this.velocity = {
+                        x: (Math.random() < 0.5 ? -1 : 1) * (Math.random() / 2),
+                        y: Math.random() + 0.5
+                    };
+                    this.position = {x: x - 10, y: y - 20};
+                    this.initialStyles.color = color;
+                    this.element = document.createElement('span');
+                    this.element.innerHTML = this.character;
+                    applyProperties(this.element, this.initialStyles);
+                    this.update();
+                    document.body.appendChild(this.element);
+                };
+
+                this.update = function() {
+                    this.position.x += this.velocity.x;
+                    this.position.y -= this.velocity.y;
+                    this.lifeSpan--;
+                    this.element.style.transform = "translate3d(" + this.position.x + "px," + this.position.y + "px,0) scale(" + (this.lifeSpan / 120) + ")";
+                    this.element.style.opacity = (this.lifeSpan / 120) * 0.8;
+                };
+
+                this.die = function() {
+                    if (this.element.parentNode) {
+                        this.element.parentNode.removeChild(this.element);
+                    }
+                };
+            }
+
+            function applyProperties(target, properties) {
+                for (var key in properties) {
+                    target.style[key] = properties[key];
+                }
+            }
+
+            init();
+        })();
+    </script>
+</body>
+</html>

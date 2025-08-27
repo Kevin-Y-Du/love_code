@@ -1,3 +1,30 @@
+// Disable right-click and DevTools shortcuts
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+});
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'F12' || e.keyCode === 123) {
+        e.preventDefault();
+    }
+    if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.keyCode === 73)) {
+        e.preventDefault();
+    }
+    if (e.ctrlKey && e.shiftKey && (e.key === 'J' || e.keyCode === 74)) {
+        e.preventDefault();
+    }
+    if (e.ctrlKey && (e.key === 'U' || e.keyCode === 85)) {
+        e.preventDefault();
+    }
+});
+
+// Prevent pull-to-refresh on mobile
+document.addEventListener('touchmove', function(e) {
+    if (e.touches.length === 1 && window.scrollY === 0) {
+        e.preventDefault();
+    }
+}, { passive: false });
+
 // --- Fairy Dust Cursor Script ---
 (function fairyDustCursor() {
     var possibleColors = ["#D61C59", "#E7D84B", "#1B8798"];
